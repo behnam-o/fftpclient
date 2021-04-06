@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="fftpclient" default="jar" basedir="../">
+    <description>
+        A simple FastFTP(FFTP) client.
+    </description>
+
+    <property name="javac.target" value="1.8" />
+    <property name="src.dir" location="./src/main" />
+    <property name="dist.dir" location="./dist" />
+    <property name="doc.dir" location="./doc" />
+    <property name="classes.dir" location="${dist.dir}/classes" />
+
+    
+
+    <!-- =============================== classpaths ================================== -->
+    <path id="compile.classpath">
+        <!-- Include all of the projects libs -->
+        <fileset dir="." includes="lib/**/*.jar" />
+
+        <!-- Include project compile dependancies -->
+        <!-- <path refid="compile.depends.classpath" /> -->
+
+    </path>
+
+
+
+    <!-- =============================== targets ================================== -->
+    <target name="init">
+        <echo message="*********************************************************" />
+        <echo message="** Project:     ${ant.project.name}" />
+        <echo message="** Ant version: ${ant.version}" />
+        <echo message="** Src dir:  ${src.dir}" />
+        <echo message="** Dist dir: ${dist.dir}" />
+        <echo message="*********************************************************" />
+    </target>
+
+
+    <target name="compile">
+        <echo message="Compiling: ${ant.project.name}" />
+
+        <mkdir dir="${dist.dir}" />
+        <mkdir dir="${classes.dir}" />
+
+        <exec executable="javac">
+            <arg value="-version" />
+        </exec>
+        <echo message="JVM target version: ${javac.target}" />
+
+        <javac destdir="${classes.dir}" source="${javac.target}" 
+            target="${javac.target}" debug="true" includeantruntime="false">
+            <src path="${src.dir}" />
+            <classpath refid="compile.classpath" />
+            <include name="**/*.java" />
+        </javac>
+    </target>
+
+
+    <target name="jar" depends="init, compile" >
+        <echo message="Jarring: ${ant.project.name}" />
+        <jar jarfile="${dist.dir}/${ant.project.name}.jar">
+            <fileset dir="${classes.dir}">
+                <include name="**/*.class" />
+            </fileset>
+            <manifest>
+                <attribute name="Main-Class" value="org.ousat.fftpclient.FastFtp"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="clean" >
+        <echo message="Cleaning: ${ant.project.name}" />
+        <delete includeEmptyDirs="true">
+            <fileset dir="${dist.dir}" includes="**/*"/>            
+        </delete>
+    </target>
+
+    <target name="doc" >
+        <echo message="Dev Documenting: ${ant.project.name}" />
+        <javadoc destdir="${doc.dir}" 
+                 sourcepath="${src.dir}" 
+                 access="private"
+        />
+    </target>
+
+    <target name="test" >
+        <echo message="Testing: ${ant.project.name}" />
+    </target>
+
+</project>
