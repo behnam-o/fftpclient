@@ -17,7 +17,7 @@ The client holds a "transmission queue" internally, where it keeps track of whic
 To simulate the unreliablity of UDP, the server drops packets with a certain probablity and acknowledges packets with a delay, which can be modified in the server start script. If the client does not receive an ACK after a "time-out" period, it will re-send all the packets in the transmission queue.
 
 
-you can run the server by running: ( from main project directory ):
+you can run the server by running: (from main project directory):
 
 ./fftpserver/server.sh
 
