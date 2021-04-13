@@ -1,2 +1,4 @@
 dist/
 doc/
+/.idea/
+fftpclient.iml
