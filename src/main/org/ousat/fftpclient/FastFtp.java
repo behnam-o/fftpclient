@@ -14,7 +14,7 @@ import org.ousat.fftpclient.utils.Segment;
  * It uses unreliable UDP datagrams for file transfer but implements a version of Go-back-N protocol
  * to achieve reliable end-to-end transfer.
  *
- * @author Behnam Ousat
+ * @author Behnam Ouszat
  * @version 1.0
  */
 public class FastFtp {
