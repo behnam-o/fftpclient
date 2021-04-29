@@ -1,4 +1,6 @@
-In this project, we implement "Fast FTP" (FFTP). It is a made up protocol for transferring files from a client to a server.
+# FFTP Client
+
+"Fast FTP" (FFTP) is a made-up protocol for reliably transferring files over unreliable UDP sockets.
 
 The data transmission occurs over the UDP protocol. But FFTP achieves reliablity by employing a Go-Back-N protocol to achieve reliable file transfer.
 
